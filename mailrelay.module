@@ -1,0 +1,97 @@
+<?php
+/**
+ * Display help and module information
+ * @param path which path of the site we're displaying help
+ * @param arg array that holds the current path as would be returned from arg() function
+ * @return help text for the path
+ */
+function mailrelay_help($path, $arg) 
+{
+	$output = '';  //declare your output variable
+	switch ($path) 
+	{
+		case "admin/help#mailrelay":
+			$output = '<p>'.  t("Mailrelay Sync Component") .'</p>';
+      			break;
+  	}
+  	return $output;
+} // function mailrelay_sync_help
+
+/**
+* Valid permissions for this module
+* @return array An array of valid permissions for the onthisdate module
+*/
+function mailrelay_perm() 
+{
+	return array('administer mailrelay', 'access mailrelay');
+} // function mailrelay_perm()
+
+function mailrelay_admin() 
+{
+	$form = array();
+
+	// where user sets the username for mailrelay
+	$form['mailrelay_username'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Username for Mailrelay'),
+		'#default_value' => variable_get('mailrelay_username', ''),
+		'#size' => 50,
+		'#maxlength' => 255,
+		'#description' => t("Username to access Mailrelay API."),
+		'#required' => TRUE,
+	);
+
+	// where user sets the password for mailrelay
+	$form['mailrelay_password'] = array(
+		'#type' => 'password',
+		'#title' => t('Password for Mailrelay'),
+		'#default_value' => variable_get('mailrelay_password', ''),
+		'#size' => 25,
+		'#maxlength' => 25,
+		'#description' => t("Password to access Mailrelay API."),
+		'#required' => TRUE,
+	);
+  
+	// where user sets the hostname for mailrelay
+	$form['mailrelay_hostname'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Hostname for Mailrelay'),
+		'#default_value' => variable_get('mailrelay_hostname', ''),
+		'#size' => 50,
+		'#maxlength' => 255,
+		'#description' => t("Hostname to access Mailrelay API."),
+		'#required' => TRUE,
+	);
+
+	return system_settings_form($form);
+}
+
+function mailrelay_menu() 
+{
+	$items = array();
+
+	// menu for Mailrelay settings
+	$items['admin/settings/mailrelay'] = array(
+		'title' => t('Mailrelay Sync settings'),
+    		'description' => t('Configures the data from Mailrelay Sync'),
+    		'page callback' => 'drupal_get_form',
+    		'page arguments' => array('mailrelay_admin'),
+    		'access arguments' => array('administer mailrelay'),
+    		'type' => MENU_NORMAL_ITEM,
+	);
+
+	// menu for Mailrelay sync process
+	$items['admin/mailrelay'] = array(
+		'title' => t('Mailrelay Sync process'),
+    		'description' => t('Launches the Mailrelay Sync process'),
+    		'page callback' => 'drupal_get_form',
+    		'access arguments' => array('access mailrelay'),
+    		'file'=>'mailrelay.admin.inc',
+    		'page callback' => 'drupal_get_form',
+    		'page arguments' => array('mailrelayStartSync'),    
+    		'weight' => 50
+   	);
+
+	return $items;
+}
+?>

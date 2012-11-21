@@ -1,0 +1,82 @@
+-------------------------------------------
+---- Instalación de MRSync para Drupal ----
+-------------------------------------------
+
+La instalación de MRSync para Drupal es muy sencilla. Solo requiere de un par de pasos que se realizan muy rápidamente. Esto incluye subir algunos archivos por FTP, y ejecutar algunas configuraciones en el panel de administración.
+
+Tras su instalación dispondrá de nuevo menú en el panel izquierdo, que le permitirá sincronizar todos sus usuarios de Drupal con su cuenta de Mailrelay. Ahorrándole el laborioso proceso de copiarlas manualmente, y organizarlas por grupos.
+
+Comencemos con el proceso de instalación: 
+
+---------------------
+Primer paso requerido
+---------------------
+
+El primer paso para poder utilizar esta extensión es habilitar la clave de API en su cuenta de Mailrelay. Para ello debe acceder a su panel de Mailrelay. Una vez ahí acceda al menú 'Configuración', submenú 'Acceso a la API' y haga clic en el botón 'Generar nueva clave API'. No es necesario que anote esta clave, una vez generada, la extensión podrá acceder a ella utilizando su usuario y contraseña.
+
+-----------------------------------------
+Subir al servidor los archivos necesarios
+-----------------------------------------
+
+Para realizar este proceso puede contar con la ayuda de un programa FTP, como el gratuito Filezilla ( http://filezilla-project.org/download.php?type=client ). Necesitará también los datos de acceso FTP al hosting donde tiene instalado el software Drupal, para ello solo debé contactar con su proveedor de hosting.
+
+Los ficheros que necesita subir son los siguientes ( a la izquierda vemos el fichero de origen, y a la derecha el destino en el servidor ):
+
+- mailrelay/mailrelay.admin.inc       ==> sites/all/modules/mailrelay/mailrelay.admin.inc
+- mailrelay/mailrelay.info            ==> sites/all/modules/mailrelay/mailrelay.info
+- mailrelay/mailrelay.module          ==> sites/all/modules/mailrelay/mailrelay.module
+
+--------------------------------------------
+Instalación desde el panel de administración
+--------------------------------------------
+
+Una vez hemos subido los ficheros necesarios, queda realizar algunos pasos de configuración desde el panel de control:
+
+- Iremos al menú "Administrar"
+- Sub-menú "Módulos"
+- Buscaremos el módulo "Mailrelay Sync" que se encuentra bajo el grupo de "Otros"
+- Si el checkbox está desactivado, lo marcaremos
+- Por último haremos click en el botón "Guardar configuración".
+
+Esto finaliza el proceso de instalación, ahora será necesario que configuremos la extensión.
+
+-------------------------------
+Configuración de la herramienta
+-------------------------------
+
+Una vez instalada la extensión dispondremos de una nueva opción de configuración. Iremos al menú de Administrar > Configuración del sitio.
+Bajo este menú se encuentra la opción "Mailrelay Sync settings". Al pulsar sobre la opción nos llevará a una pantalla donde deberemos rellenar los siguientes datos:
+
+- Usuario (este dato lo puede encontrar en su email de bienvenida a Mailrelay)
+- Password (este dato lo puede encontrar en su email de bienvenida a Mailrelay)
+- Host (este dato lo puede encontrar en su email de bienvenida a Mailrelay)
+
+Una vez guardados correctamente podemos iniciar la sincronización de usuarios.
+
+--------------------
+Sincronizar usuarios
+--------------------
+
+Bajo Administrar, veremos una nueva opción llamada "Mailrelay Sync process". Podemos utilizar esta opción para sincronizar los usuarios de nuestro sistema, con nuestra cuenta de Mailrelay. 
+Esto nos llevará a una pantalla donde seleccionaremos a que grupos de nuestra cuenta de Mailrelay se deben sincronizar los usuarios de Drupal.
+Los marcaremos y haremos clic en el botón "Start sync process".
+
+Veremos la siguiente pantalla, que simplemente nos muestra el proceso de sincronización. Muestra el total de usuarios sincronizados.
+
+[ NOTA: Dependiendo del número de usuarios a sincronizar, el proceso puede tardar desde unos segundos a varios minutos. ]
+
+--------------
+Desinstalación
+--------------
+
+Desinstalar la extensión es igual de sencillo que su instalación. Solo debe ir al menú Administrar > Configuración del sitio. 
+Se debe buscar el módulo de Mailrelay Sync y desactivarlo. Seleccionando esta opción, la extensión se desactivará. 
+Los ficheros no se borrarán del ftp, para ello es necesario que elimine la carpeta correspondiente en sites/all/modules.
+
+---------------------------------------------
+Notas finales
+---------------------------------------------
+
+- Esta extensión ha sido probada en Drupal® Version 6.25
+
+- Este software se proporciona "TAL CUAL" por los propietarios del copyright, y con ningun garantía expresa o implícita, incluyendo, pero no limitado a, las garantías de comercialización y aptitud para un proposito en particular. En ningún caso el propietario del copyright o los colaborados serán responsables por daños directos, indirectos, accidentales, especiales, ejemplares o derivados (incluyendo, sin limitaciones a la obtención de bienes o servicios, la pérdida de uso, de datos o de beneficios; o interrupción de negocio), de cualquier causa a partir del uso de este software, incluso si se ha advertido de la posibilidad de tales daños.

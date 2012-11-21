@@ -1,0 +1,4 @@
+name = Mailrelay Sync
+description = Mailrelay Sync Component
+core = 6.x
+version = 1.1
