@@ -67,7 +67,7 @@ function mailrelayStartSync()
     		curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
 
                 $headers = array(
-                        'X-Request-Origin' => 'Drupal6|1.1|'.VERSION 
+                        'X-Request-Origin' => 'Drupal7|1.1|'.VERSION
                 );
                 curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
@@ -92,10 +92,11 @@ function mailrelayStartSync()
             			'apiKey' => $apiKey
         		);
 
-                	$headers = array(
-                        	'X-Request-Origin' => 'Drupal6|1.1|'.VERSION
-                	);
+	                $headers = array(
+        	                'X-Request-Origin' => 'Drupal7|1.1|'.VERSION
+        	        );
                 	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
        	 		curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
 
         		$result = curl_exec($curl);
@@ -160,7 +161,7 @@ function mailrelayStartSync_submit($form, &$form_state)
 
 	// load drupal users
 	$res_user = db_query("SELECT mail, name FROM {users}");
-	while ($user = db_fetch_object($res_user))
+	foreach($res_user as $user)
 	{
 		if ($user->mail)
 		{
@@ -175,17 +176,18 @@ function mailrelayStartSync_submit($form, &$form_state)
                         curl_setopt($curl, CURLOPT_POST, 1);            
                         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
 
-                	$headers = array(
-                        	'X-Request-Origin' => 'Drupal6|1.1|'.VERSION
-                	);
-                	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	                $headers = array(
+        	                'X-Request-Origin' => 'Drupal7|1.1|'.VERSION
+        	        );
+        	        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
                         $result = curl_exec($curl);
                         $jsonResult = json_decode($result); 
 
                         if ((!$jsonResult->status) || (count($jsonResult->data)==0)) 
 			{
                                 $usuarios_mailrelay = new StdClass;
-				$usuarios_mailrelay->email = null;
+				$usuarios_mailrelay->email=null;
                         } 
 			else 
 			{
@@ -211,9 +213,10 @@ function mailrelayStartSync_submit($form, &$form_state)
                                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
                                 
 		                $headers = array(
-                		        'X-Request-Origin' => 'Drupal6|1.1|'.VERSION
+                		        'X-Request-Origin' => 'Drupal7|1.1|'.VERSION
                 		);
                 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
                                 $result = curl_exec($curl);
                                 
                                 $jsonResult = json_decode($result);
@@ -240,8 +243,8 @@ function mailrelayStartSync_submit($form, &$form_state)
                                 curl_setopt($curl, CURLOPT_POST, 1);
                                 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params, null, "&"));
 
-                		$headers = array(
-                        		'X-Request-Origin' => 'Drupal6|1.1|'.VERSION
+        		        $headers = array(
+	                	        'X-Request-Origin' => 'Drupal7|1.1|'.VERSION
                 		);
                 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
                                 $result = curl_exec($curl);

@@ -44,8 +44,8 @@ This finishes the installation process.
 Configuring the extension
 -------------------------
 
-Once the extension is installed we will have a new settings option. We will go to Administer > Site configuration.
-Under this menu there is the option "Mailrelay Sync settings". Clicking on this option will take us to a form where we need to fill the following data:
+Once the extension is installed we will have a new settings option. We will go to the upper Configuration option.
+In this menu there is the option "Mailrelay Sync settings". Clicking on this option will take us to a form where we need to fill the following data:
 
 - Username (this can be found in your Mailrelay welcome email)
 - Password (this can be found in your Mailrelay welcome email)
@@ -57,7 +57,7 @@ Once this data is successfully saved we can start the user sync.
 Sync users
 ----------
 
-Under Administer, we will see a new option called "Mailrelay Sync process". We can use this option to sync the users of our system, with our Mailrelay account. 
+In the top menu bar, we will see a new option called "Mailrelay Sync process". We can use this option to sync the users of our system, with our Mailrelay account. 
 This will take us to a screen where we can select the groups of our Mailrelay account that must be sync with the Drupal users.
 We will click them and will press the button "Start sync process".
 
@@ -69,13 +69,13 @@ We will see the following screen, that simply shows us the sync process. It show
 Uninstall
 ---------
 
-Uninstalling the extension is as easy as installing it. You only have to go to Administer > Site configuration. 
+Uninstalling the extension is as easy as installing it. You only have to go to the option Modules in the upper menu. 
 You must search for the Mailrelay Sync module and disable it. Selecting this option, the extension will be disabled. 
 The files won't be removed from ftp, to do that you must remove the right folder under sites/all/modules.
 
 ----------------
 Additional notes
 ----------------
-- This extension has been tested using Drupal® Version 6.25
+- This extension has been tested using Drupal® Version 7.12
 
 - This software is provided by the copyright holders and contributors "AS IS" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a paarticular purpose are disclaimed. In no event shall the copyright owner or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data or profits, or bussiness interruption) however caused and on any theory of liability, wether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.

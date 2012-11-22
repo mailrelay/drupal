@@ -71,7 +71,7 @@ function mailrelay_menu()
 	$items = array();
 
 	// menu for Mailrelay settings
-	$items['admin/settings/mailrelay'] = array(
+	$items['admin/config/system/mailrelay'] = array(
 		'title' => t('Mailrelay Sync settings'),
     		'description' => t('Configures the data from Mailrelay Sync'),
     		'page callback' => 'drupal_get_form',
@@ -88,8 +88,9 @@ function mailrelay_menu()
     		'access arguments' => array('access mailrelay'),
     		'file'=>'mailrelay.admin.inc',
     		'page callback' => 'drupal_get_form',
-    		'page arguments' => array('mailrelayStartSync'),    
-    		'weight' => 50
+    		'page arguments' => array('mailrelayStartSync', 1),    
+    		'weight' => 50,
+		'type'=>MENU_NORMAL_ITEM
    	);
 
 	return $items;
