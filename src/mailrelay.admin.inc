@@ -67,7 +67,7 @@ function mailrelayStartSync()
     		curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
 
                 $headers = array(
-                        'X-Request-Origin' => 'Drupal6|1.1|'.VERSION 
+                        'X-Request-Origin: Drupal6|1.1|'.VERSION 
                 );
                 curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
@@ -93,7 +93,7 @@ function mailrelayStartSync()
         		);
 
                 	$headers = array(
-                        	'X-Request-Origin' => 'Drupal6|1.1|'.VERSION
+                        	'X-Request-Origin: Drupal6|1.1|'.VERSION
                 	);
                 	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
        	 		curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
@@ -176,7 +176,7 @@ function mailrelayStartSync_submit($form, &$form_state)
                         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
 
                 	$headers = array(
-                        	'X-Request-Origin' => 'Drupal6|1.1|'.VERSION
+                        	'X-Request-Origin: Drupal6|1.1|'.VERSION
                 	);
                 	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
                         $result = curl_exec($curl);
@@ -211,7 +211,7 @@ function mailrelayStartSync_submit($form, &$form_state)
                                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
                                 
 		                $headers = array(
-                		        'X-Request-Origin' => 'Drupal6|1.1|'.VERSION
+                		        'X-Request-Origin: Drupal6|1.1|'.VERSION
                 		);
                 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
                                 $result = curl_exec($curl);
@@ -241,7 +241,7 @@ function mailrelayStartSync_submit($form, &$form_state)
                                 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params, null, "&"));
 
                 		$headers = array(
-                        		'X-Request-Origin' => 'Drupal6|1.1|'.VERSION
+                        		'X-Request-Origin: Drupal6|1.1|'.VERSION
                 		);
                 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
                                 $result = curl_exec($curl);
