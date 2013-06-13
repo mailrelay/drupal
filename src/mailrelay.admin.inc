@@ -33,8 +33,8 @@ function mailrelayForm($options, $apiKey) {
 
 // main screen for sync process: gets config vars and connects to API to get groups
 function mailrelayStartSync() {
-    $hostname = variable_get('mailrelay_hostname', '');
-    $apiKey = variable_get('mailrelay_api_key', '');
+    $hostname = trim(variable_get('mailrelay_hostname', ''));
+    $apiKey = trim(variable_get('mailrelay_api_key', ''));
 
     $form = array();
     if (!$hostname || !$apiKey) {
@@ -46,7 +46,7 @@ function mailrelayStartSync() {
         if (substr($hostname, 0, 7) == 'http://') $hostname = substr($hostname, 7);
 
         // Initialize CURL
-        $url = 'http://' . $hostname . '/ccm/admin/api/version/2/&type=json';
+        $url = 'https://' . $hostname . '/ccm/admin/api/version/2/&type=json';
         $curl = curl_init($url);
 
         // Call getGroups
@@ -57,6 +57,8 @@ function mailrelayStartSync() {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSLVERSION, 3);
 
         // Set headers
         $headers = array(
@@ -101,17 +103,15 @@ function mailrelayStartSync_submit($form, &$form_state) {
     set_time_limit(0);
 
     // have the api key and groups
-    $apiKey = $form_state['values']['apiKey'];
+    $apiKey = trim($form_state['values']['apiKey']);
     $groups = $form_state['values']['groups'];
 
     // read settings: hostname, username and password
-    $hostname = variable_get('mailrelay_hostname', '');
-    if (substr($hostname, 0, 7) == 'http://') $hostname = substr($hostname, 7);
-
+    $hostname = trim(variable_get('mailrelay_hostname', ''));
 
     $synced_users = 0;
 
-    $url = 'http://'. $hostname .'/ccm/admin/api/version/2/&type=json';
+    $url = 'https://'. $hostname .'/ccm/admin/api/version/2/&type=json';
     $curl = curl_init($url);
 
     // load drupal users
@@ -127,6 +127,8 @@ function mailrelayStartSync_submit($form, &$form_state) {
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSLVERSION, 3);
 
             // Set headers
             $headers = array(
